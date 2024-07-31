@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #000;
+  overflow: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  place-content: center;
+  width: 100vw;
+  height: 100dvh;
+  background-color: #fff;
+  transition: background-color 0.2s ease-out;
+}
+
+div.ttl {
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+}
+div.ttl img {
+  pointer-events: none;
+  width: min(300px, 50vw);
+  aspect-ratio: 1000/373;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.theme {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: min(36px, 10vw);
+  aspect-ratio: 1/1;
+  border-radius: 0 0 10px 0;
+  background-color: #999;
+  cursor: pointer;
+}
+.theme svg {
+  width: 80%;
+  fill: #fff;
+}
+
+.search_box {
+  display: flex;
+  align-items: center;
+  margin-block: 20px 50px;
+  border-radius: 100px;
+  width: min(640px, 90vw);
+  height: 35px;
+  border: 1px solid #aaa;
+  background-color: transparent;
+}
+.search_box:has(input.search_input:focus) {
+  border: 1px solid #666;
+}
+.search_box .svg {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  aspect-ratio: 1/1;
+  padding: 7px;
+  cursor: pointer;
+  background-image: radial-gradient(circle, #fff, transparent 65%);
+  border-radius: 50%;
+}
+.search_box .svg svg {
+  display: block;
+  width: 20px;
+  fill: #000;
+}
+.search_box .svg.search_btn {
+  width: 24px;
+  aspect-ratio: 1/1;
+}
+.search_box .svg.search_btn svg {
+  width: 24px;
+  fill: #000;
+}
+.search_box input.search_input {
+  display: block;
+  width: 87%;
+  height: 35px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-family: sans-serif;
+  background-color: transparent;
+  margin-inline: auto;
+}
+
+.support {
+  position: absolute;
+  left: 30px;
+  bottom: -369px;
+  width: min(300px, 100% - 2rem);
+  height: auto;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 10px 10px 0 0;
+  transition: all 0.4s ease-out;
+  cursor: pointer;
+}
+.support.active {
+  bottom: 0;
+}
+.support.active div.support_ttl .hide_open {
+  rotate: 90deg;
+}
+.support div.support_ttl {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  color: #555;
+  border-bottom: 1px solid #aaa;
+  font-family: "roboto mono", sans-serif;
+  font-size: 1.2rem;
+  box-sizing: border-box;
+  translate: 0 2px;
+}
+.support div.support_ttl .hide_open {
+  position: absolute;
+  right: 0px;
+  width: 40px;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
+  rotate: -90deg;
+}
+.support div.support_ttl .hide_open svg {
+  width: 20px;
+  fill: #000;
+}
+.support .support_nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  padding-block: 5px;
+  gap: 10px;
+  padding-left: 20px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: cell;
+  margin-top: 1px;
+  background-color: #ddd;
+}
+.support .support_nav svg {
+  width: 24px;
+  fill: #000;
+}
+.support .support_nav p.ttl {
+  font-size: 1rem;
+  font-family: "roboto mono", sans-serif;
+  transition: all 0.15s ease-out;
+}
+.support .support_nav:hover p.ttl {
+  color: #008;
+}
+
+a.cettio_link {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 36px;
+  aspect-ratio: 1/1;
+  padding: 5px;
+}
+a.cettio_link img {
+  display: block;
+  width: 36px;
+  aspect-ratio: 1;
+}
+
+body.darkmode {
+  background-color: #222;
+}
+body.darkmode .theme {
+  background-color: #666;
+}
+body.darkmode .theme svg {
+  fill: #222;
+}
+body.darkmode .search_box {
+  border: 1px solid #666;
+}
+body.darkmode .search_box:has(input.search_input:focus) {
+  border: 1px solid #aaa;
+}
+body.darkmode .search_box input.search_input {
+  color: #fff;
+}
+
+@media (max-width: 420px) {
+  .search_box .search_btn.svg {
+    display: none;
+  }
+}
+@media (max-width: 361px) {
+  .support {
+    opacity: 0;
+    pointer-events: none;
+  }
+}/*# sourceMappingURL=style.css.map */
