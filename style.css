@@ -25,25 +25,27 @@ div.ttl {
   display: grid;
   place-items: center;
   margin-bottom: 20px;
+  cursor: pointer;
 }
-div.ttl img {
-  pointer-events: none;
-  width: min(300px, 50vw);
+div.ttl svg {
+  width: min(350px, 75vw);
   aspect-ratio: 1000/373;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  fill: #000;
+  transition: all 0.2s ease-out;
+}
+div.ttl svg path {
+  transition: fill 0.15s ease-out;
 }
 
 .theme {
   display: grid;
   place-items: center;
   position: absolute;
-  left: 0;
+  right: 0;
   top: 0;
   width: min(36px, 10vw);
   aspect-ratio: 1/1;
-  border-radius: 0 0 10px 0;
+  border-radius: 0 0 0 10px;
   background-color: #999;
   cursor: pointer;
 }
@@ -61,6 +63,7 @@ div.ttl img {
   height: 35px;
   border: 1px solid #aaa;
   background-color: transparent;
+  transition: border 0.1s ease-out;
 }
 .search_box:has(input.search_input:focus) {
   border: 1px solid #666;
@@ -73,17 +76,17 @@ div.ttl img {
   aspect-ratio: 1/1;
   padding: 7px;
   cursor: pointer;
-  background-image: radial-gradient(circle, #fff, transparent 65%);
   border-radius: 50%;
+  pointer-events: none;
 }
 .search_box .svg svg {
   display: block;
   width: 20px;
-  fill: #000;
 }
 .search_box .svg.search_btn {
   width: 24px;
   aspect-ratio: 1/1;
+  pointer-events: all;
 }
 .search_box .svg.search_btn svg {
   width: 24px;
@@ -104,20 +107,24 @@ div.ttl img {
 .support {
   position: absolute;
   left: 30px;
-  bottom: -369px;
-  width: min(300px, 100% - 2rem);
-  height: auto;
-  background-color: #fff;
-  border: 1px solid #aaa;
-  border-radius: 10px 10px 0 0;
-  transition: all 0.4s ease-out;
-  cursor: pointer;
-}
-.support.active {
   bottom: 0;
+  width: min(300px, 100% - 2rem);
+  height: 408px;
+  border-radius: 10px 10px 0 0;
+  border-top: 1px solid #aaa;
+  cursor: pointer;
+  translate: 0 1px;
+  -webkit-clip-path: inset(0 0 0 0);
+          clip-path: inset(0 0 0 0);
+  transition: all 0.3s ease-out;
+  z-index: 99;
 }
-.support.active div.support_ttl .hide_open {
-  rotate: 90deg;
+.support.hide {
+  -webkit-clip-path: inset(calc(100% - 40px) 0 0 0);
+          clip-path: inset(calc(100% - 40px) 0 0 0);
+}
+.support.hide div.support_ttl .hide_open {
+  rotate: -90deg;
 }
 .support div.support_ttl {
   position: relative;
@@ -126,13 +133,14 @@ div.ttl img {
   padding-left: 20px;
   width: 100%;
   height: 40px;
-  background-color: #fff;
   color: #555;
-  border-bottom: 1px solid #aaa;
+  border: 1px solid #aaa;
+  background-color: #fff;
   font-family: "roboto mono", sans-serif;
   font-size: 1.2rem;
   box-sizing: border-box;
-  translate: 0 2px;
+  translate: 0 -1px;
+  transition: all 0.3s ease-out, background-color 0.2s ease-out;
 }
 .support div.support_ttl .hide_open {
   position: absolute;
@@ -141,16 +149,18 @@ div.ttl img {
   aspect-ratio: 1/1;
   display: grid;
   place-items: center;
-  rotate: -90deg;
+  rotate: 90deg;
+  transition: rotate 0.15s ease-out;
 }
 .support div.support_ttl .hide_open svg {
   width: 20px;
   fill: #000;
+  transition: all 0.2s ease-out;
 }
 .support .support_nav {
   display: flex;
   align-items: center;
-  width: 100%;
+  width: calc(100% - 22px);
   height: 30px;
   padding-block: 5px;
   gap: 10px;
@@ -158,21 +168,26 @@ div.ttl img {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  border-inline: 1px solid #aaa;
+  border-bottom: 1px solid #ccc;
   cursor: cell;
-  margin-top: 1px;
-  background-color: #ddd;
+  background-color: #eee;
+  transition: all 0.2s ease-out;
+}
+.support .support_nav * {
+  transition: all 0.2s ease-out;
 }
 .support .support_nav svg {
   width: 24px;
-  fill: #000;
 }
 .support .support_nav p.ttl {
   font-size: 1rem;
   font-family: "roboto mono", sans-serif;
   transition: all 0.15s ease-out;
+  color: #000;
 }
 .support .support_nav:hover p.ttl {
-  color: #008;
+  color: #00a;
 }
 
 a.cettio_link {
@@ -193,6 +208,9 @@ a.cettio_link img {
 body.darkmode {
   background-color: #222;
 }
+body.darkmode div.ttl svg {
+  fill: #fff;
+}
 body.darkmode .theme {
   background-color: #666;
 }
@@ -207,6 +225,25 @@ body.darkmode .search_box:has(input.search_input:focus) {
 }
 body.darkmode .search_box input.search_input {
   color: #fff;
+}
+body.darkmode .search_box .svg {
+  background-image: radial-gradient(circle, #888, transparent 65%);
+}
+body.darkmode .support .support_ttl {
+  background-color: #222;
+  color: #aaa;
+}
+body.darkmode .support .support_ttl svg {
+  fill: #fff;
+}
+body.darkmode .support .support_nav {
+  background-color: #333;
+}
+body.darkmode .support .support_nav p.ttl {
+  color: #fff;
+}
+body.darkmode .support .support_nav svg {
+  background-image: radial-gradient(circle, #ddd, transparent 65%);
 }
 
 @media (max-width: 420px) {
